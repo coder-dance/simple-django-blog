@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    帖子列表
+{% endblock %}
+
+{% block left %}
+
+    <div id="main">
+        {% for post in post_list %}
+
+            <article class="article article-type-post">
+                <div class="article-meta">
+                    <a class="article-date">
+                        <time>{{ post.created|date:'Y-m-d H:i:s' }}</time>
+                    </a>
+                    <div class="article-category">
+                        <a class="article-category-link" href="/category/{{ post.category_id }}" target="_blank">{{ post.category.cname }}</a>
+                    </div>
+                </div>
+                <div class="article-inner">
+                    <header class="article-header">
+                        <h1 itemprop="name">
+                            <a class="article-title" href="/post/{{ post.id }}" target="_blank">{{ post.title }}</a>
+                        </h1>
+                    </header>
+                    <div class="article-entry" itemprop="articleBody">
+                        {{ post.desc }}
+
+                        <p class="article-more-link">
+                            <a href="/post/{{ post.id }}" target="_blank">阅读全文</a>
+                        </p>
+                    </div>
+                    <footer class="article-footer">
+                        <ul class="article-tag-list">
+                            {% for t in post.tag.all %}
+
+                                <li class="article-tag-list-item">
+                                    <a class="article-tag-list-link" href="#">{{ t.tname }}</a>
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+                    </footer>
+                </div>
+            </article>
+
+        {% endfor %}
+    </div>
+{% endblock %}

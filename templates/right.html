@@ -1,0 +1,57 @@
+ <aside id="sidebar">
+     <!--分类-->
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list">
+          {% for rcp in right_category_post %}
+
+            <li class="category-list-item">
+              <a class="category-list-link" href="/category/{{ rcp.category }}">{{ rcp.category__cname }}</a>
+              <span class="category-list-count">{{ rcp.c }}</span>
+            </li>
+          {% endfor %}
+      </ul>
+      </div>
+  </div>
+
+     <!--归档-->
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list">
+          {% for rfp in right_file_post %}
+
+                <li class="archive-list-item">
+                  <a class="archive-list-link" href="/archive/{{ rfp.0|date:'Y' }}/{{ rfp.0|date:'m' }}">{{ rfp.0|date:'Y年m月' }}</a>
+                  <span class="archive-list-count">{{ rfp.1 }}</span>
+                </li>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+    <!--近期文章-->
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+            {% for rrp in right_recent_post %}
+            <li>
+                <a href="/post/{{ rrp.id }}" target="_blank">{{ rrp.title|truncatechars:10 }}</a>
+            </li>
+            {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+          <li>
+            <a href="/" target="_blank">个人博客</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</aside>

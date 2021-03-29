@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    搜索结果
+{% endblock %}
+
+{% block left %}
+
+    <div id="main">
+        {% if query %}
+            {% for post in page.object_list %}
+                <article class="article article-type-post">
+                    <div class="article-meta">
+                    </div>
+                    <div class="article-inner">
+                        <a class="article-date">
+                            <time>{{ post.objects.created|date:'Y-m' }}</time>
+                        </a>
+                        <header class="article-header">
+                            <h1 itemprop="name">
+                                <a class="article-title" href="/post/{{ post.object.id }}"
+                                   target="_blank">{{ post.object.title }}</a>
+                            </h1>
+                        </header>
+                        <div class="article-entry" itemprop="articleBody">
+                            {{ post.object.desc }}
+
+                            <p class="article-more-link">
+                                <a href="/post/{{ post.object.id }}" target="_blank">阅读全文</a>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+            {% empty %}
+                未查询到结果信息
+            {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+
